@@ -36,7 +36,17 @@ Build
 
 To develop the application further, you need to
 - Install Node and NPM. Check the install with: node --version && npm --version
-- 
+- Install Yeoman (which will also install Bower and Grunt). Install with: npm install -g yo
+- Check the install with: yo --version && bower --version && grunt --version
+- Install the Yeoman angular "generator" with: npm install --global generator-angular
+- There are some outstanding problems with the Yeoman angular generator. If, when running, "grunt test" you see "Warning: Task "karma" not found. Use --force to continue" then see https://github.com/yeoman/generator-angular/issues/515. The fix I used is to install the following manually: 
+- npm install grunt-karma --save-dev
+- npm install karma-phantomjs-launcher --save-dev
+- npm install karma-jasmine --save-dev
+
+To run the application with a local webserver use: grunt serve
+To build the production version of the application use: grunt serve:dist
+
 
 Acknowledgements
 ===============
