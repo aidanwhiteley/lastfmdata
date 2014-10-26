@@ -44,14 +44,17 @@ To develop the application further, you need to
 - npm install karma-phantomjs-launcher --save-dev
 - npm install karma-jasmine --save-dev
 
-To run the application with a local webserver use: grunt serve
-To build the production version of the application use: grunt serve:dist
+Run
+===
+
+- To run the application with a local webserver use: grunt serve
+- To build the production version of the application use: grunt serve:dist
 
 
 Acknowledgements
 ===============
 
-This project was started after seeing the great UI in the jQuery plugin for viewing last.fm data by Alex Cash. This is available at https://github.com/alexcash/jQuery.last.fm under the MIT / GPL dual license. The CSS from that project has been re-used for the "top albums" UI in that project. The rest of this project is all new Angular.js based code.
+This project was started after seeing the great UI in the jQuery plugin for viewing last.fm data by Alex Cash. This is available at https://github.com/alexcash/jQuery.last.fm under the MIT / GPL dual license. The CSS from that project has been re-used for the "top albums" UI in this project. The rest of this project is all new Angular.js based code.
 
 License
 =======
