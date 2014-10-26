@@ -1,0 +1,33 @@
+<div class="row">
+  <h3>recently played tracks</h3>
+  
+	<div ng-if="dataRetrievalError"><p class="text-error">Sorry - there was a problem getting the recent track data from Last.fm</p></div>
+	<div ng-if="editConstantsError"><p class="text-error">Please edit app.js with your own Last.fm API details before using the application</p></div>
+	
+	<div ng-controller="ModalCtrl">	
+
+		<table ng-table="tableParams" template-pagination="views/pagination.html" class="table table-striped table-bordered table-hover table-condensed">
+			<thead>
+				<tr>
+					<th st-sort="date.uts">Date/time</th>
+					<th st-sort="name">Track name</th>
+					<th st-sort="artist">Artist</th>
+					<th st-sort="album">Album</th>
+				</tr>
+			</thead>
+			<tbody ng-hide="isLoading">
+				<tr ng-repeat="row in $data">
+					<td>{{row['@attr'].nowplaying ? "Playing now!" : row.date.uts * 1000 | date:'dd MMM yyyy H:mm' }}</td>
+					<td><a href="{{row.url}}" target=_blank>{{row.name}}</a></td>
+					<td>{{row.artist['#text']}}</td>
+					<td class="albumModal"><a ng-click="open(row.image[row.image.length-1]['#text'], row.artist['#text'], row.album['#text'])">{{row.album['#text']}}</a></td>
+				</tr>
+			</tbody>
+			<tbody ng-show="isLoading">
+				<tr><td colspan="4"><div class="spinner medium"></div></td></tr>
+			</tbody>
+		</table>
+
+	</div> 
+	
+<div class="row" ng-include="'views/lastfm-attribution.html'"></div>

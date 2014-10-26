@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>Last fm API data</title>
+    <meta name="description" content="Angular js last.fm API data">
+    <meta name="viewport" content="width=device-width">
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/docs/assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/ng-table/ng-table.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+	<link rel="stylesheet" href="styles/lfm.css">
+    <!-- endbuild -->
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div ng-app="lastfmdataApp" class="container">
+		<div class="row">
+		  <div class="masthead" ng-controller="NavTabsCtrl">
+			<ul class="nav nav-tabs pull-left"> 
+			  <li ng-class="{active:isActive('/')}"><a ng-href="#">Top albums</a></li>
+			  <li ng-class="{active:isActive('/top-tracks')}"><a ng-href="#/top-tracks">Top tracks</a></li>
+			  <li ng-class="{active:isActive('/recent-tracks')}"><a ng-href="#/recent-tracks">Recent tracks</a></li>
+			</ul>
+		  </div>
+		</div>
+		<div class="row">
+			<div ng-view=""></div>
+		</div>
+		
+		<span id="forkongithub"><a href="https://github.com/aidanwhiteley" target="_top">Fork me on GitHub</a></span>
+    </div>
+
+    <!-- build:js(.) scripts/oldieshim.js -->
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
+    <![endif]-->
+    <!-- endbuild -->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/docs/assets/js/bootstrap.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/ng-table/ng-table.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+	<!-- build:js({.tmp,app}) scripts/scripts.js -->
+	<script src="scripts/app.js"></script>
+	<script src="scripts/controllers/toptracks.js"></script>
+	<script src="scripts/controllers/topalbums.js"></script>
+	<script src="scripts/controllers/recenttracks.js"></script>
+	<script src="scripts/controllers/navtabs.js"></script>
+	<script src="scripts/controllers/modal.js"></script>
+	<script src="scripts/services/lastfmdataservice.js"></script>
+	<!-- endbuild -->
+</body>
+</html>

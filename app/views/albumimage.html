@@ -1,0 +1,11 @@
+<div class="modal-header">
+	<h3 ng-if="! theAlbum" class="modal-title">{{ theArtist }}</h3>
+	<h3 ng-if="theAlbum" class="modal-title">{{ theAlbum }} by {{ theArtist }}</h3>
+</div>
+<div class="modal-body">
+	<div ng-if="! theImage"><p class="text-error">Sorry - there is no artwork for this album on Last.fm</p></div>
+	<img ng-src="{{theImage}}">
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="ok()">OK</button> 
+</div>
