@@ -8,7 +8,7 @@ with the data based on API calls into last.fm to read scrobble data
 
 Live site
 =========
-The application can be seen running at http://aidanwhiteley.com/lastfmmusic
+The application can be seen running at http://aidanwhiteley.com/lastfmmusic or http://thegpsblog.com/music
 
 Background
 ==========
