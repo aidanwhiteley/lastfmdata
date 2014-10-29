@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <title>Last fm API data</title>
     <meta name="description" content="Angular js last.fm API data">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/docs/assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/ng-table/ng-table.css" />
     <!-- endbower -->
     <!-- endbuild -->
@@ -35,7 +35,7 @@
 			<div ng-view=""></div>
 		</div>
 		
-		<span id="forkongithub"><a href="https://github.com/aidanwhiteley" target="_top">Fork me on GitHub</a></span>
+		<!-- span id="forkongithub"><a href="https://github.com/aidanwhiteley" target="_top">Fork me on GitHub</a></span -->
     </div>
 
     <!-- build:js(.) scripts/oldieshim.js -->
@@ -47,9 +47,9 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap/docs/assets/js/bootstrap.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
@@ -65,6 +65,7 @@
 	<script src="scripts/controllers/navtabs.js"></script>
 	<script src="scripts/controllers/modal.js"></script>
 	<script src="scripts/services/lastfmdataservice.js"></script>
+	<script src="scripts/services/controllerutils.js"></script>
 	<!-- endbuild -->
 </body>
 </html>

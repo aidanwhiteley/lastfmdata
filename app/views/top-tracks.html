@@ -1,27 +1,57 @@
 <div class="row">
-  <h3>most played tracks</h3>
-	<div ng-if="dataRetrievalError"><p class="text-error">Sorry - there was a problem getting the recent track data from Last.fm</p></div>
-	<div ng-if="editConstantsError"><p class="text-error">Please edit app.js with your own Last.fm API details before using the application</p></div>
-  
-	<div ng-controller="ModalCtrl">
-		<table ng-table="tableParams" template-pagination="views/pagination.html" class="table table-striped table-bordered table-hover table-condensed">
-			<thead><tr>
-				<th st-sort="playcount">Play count</th>
-				<th st-sort="name">Track name</th>
-				<th st-sort="artist.name">Artist</th>
-			</tr></thead>
-			<tbody ng-hide="isLoading">
-				<tr ng-repeat="track in $data" class="track">
-					<td>{{track.playcount}}</td>
-					<td><a href="{{track.url}}" target=_blank>{{track.name}}</a></td>
-					<td class="albumModal"><a ng-click="open(track.image[track.image.length-1]['#text'], track.artist.name, '')">{{track.artist.name}}</a></td>
-				</tr>
-			</tbody>
-			<tbody ng-show="isLoading">
-				<tr><td colspan="3"><div class="spinner medium"></div></td></tr>
-			</tbody>
-		</table>
-	</div> 
-
+   <h3>
+      most played tracks {{displayPeriod}}
+      <span class="btn-group pull-right" dropdown>
+         <button type="button" class="btn btn-primary dropdown-toggle">
+         Time period <span class="caret"></span>
+         </button>
+         <ul class="dropdown-menu" role="menu">
+            <li><a ng-click="setPeriod('7day')">Last 7 days</a></li>
+            <li><a ng-click="setPeriod('1month')">Last 1 month</a></li>
+            <li><a ng-click="setPeriod('3month')">Last 3 months</a></li>
+            <li><a ng-click="setPeriod('6month')">Last 6 months</a></li>
+            <li><a ng-click="setPeriod('12month')">Last 12 months</a></li>
+            <li class="divider"></li>
+            <li><a ng-click="setPeriod('overall')">Overall</a></li>
+         </ul>
+      </span>
+   </h3>
 </div>
-<div class="row" ng-include="'views/lastfm-attribution.html'"></div>
+<div class="row">
+   <div ng-if="dataRetrievalError">
+      <p class="text-error">Sorry - there was a problem getting the recent track data from Last.fm</p>
+   </div>
+   <div ng-if="editConstantsError">
+      <p class="text-error">Please edit app.js with your own Last.fm API details before using the application</p>
+   </div>
+</div>
+<div class="row">
+   <div ng-controller="ModalCtrl">
+      <table ng-table="tableParams" template-pagination="views/pagination.html" class="table table-striped table-bordered table-hover table-condensed">
+         <thead>
+            <tr>
+               <th st-sort="playcount">Play count</th>
+               <th st-sort="name">Track name</th>
+               <th st-sort="artist.name">Artist</th>
+            </tr>
+         </thead>
+         <tbody ng-hide="isLoading">
+            <tr ng-repeat="track in $data" class="track">
+               <td>{{track.playcount}}</td>
+               <td><a href="{{track.url}}" target=_blank>{{track.name}}</a></td>
+               <td class="albumModal"><a ng-click="open(track.image[track.image.length-1]['#text'], track.artist.name, '')">{{track.artist.name}}</a></td>
+            </tr>
+         </tbody>
+         <tbody ng-show="isLoading">
+            <tr>
+               <td colspan="3">
+                  <div class="spinner medium"></div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+</div>
+<div class="row">
+   <div class="row" ng-include="'views/lastfm-attribution.html'"></div>
+</div>

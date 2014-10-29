@@ -8,24 +8,39 @@
  * Controller of the lastfmdataApp
  */
 angular.module('lastfmdataApp')
-    .controller('TopAlbumsCtrl', ['$scope', 'appConstants', 'lastFmDataService', function($scope, appConstants, lastFmDataService) {
+    .controller('TopAlbumsCtrl', ['$scope', 'appConstants', 'lastFmDataService', 'controllerUtils', 
+		function($scope, appConstants, lastFmDataService, controllerUtils) {
+	
+		$scope.timePeriod = '3month';
+		$scope.displayPeriod = ' over the last 3 months';
 
         if (appConstants.lastFmUser.indexOf('xxx') >= 0 || appConstants.lastFmApiKey.indexOf('000') >= 0) {
             $scope.editConstantsError = true;
             return;
         }
+        
+		$scope.setPeriod = function(selectedDuration) {
+			$scope.timePeriod = selectedDuration;
+			$scope.displayPeriod = controllerUtils.getDisplayTimePeriod(selectedDuration);
+            $scope.loadData(selectedDuration);
+		};
 
-        $scope.isLoading = true;
-
-        lastFmDataService.getTopAlbums()
-            .then(
-                function(data) {
-                    $scope.albums = data.topalbums.album;
-                    $scope.isLoading = false;
-                },
-                function() {
-                    $scope.dataRetrievalError = true;
-                    $scope.isLoading = false;
-                }
-            );
+        $scope.loadData = function(duration) {
+            $scope.isLoading = true;
+            
+            lastFmDataService.getTopAlbums(duration)
+                .then(
+                    function(data) {
+                        $scope.albums = data.topalbums.album;
+                        $scope.isLoading = false;
+                    },
+                    function() {
+                        $scope.dataRetrievalError = true;
+                        $scope.isLoading = false;
+                    }
+                );
+         };
+         
+         $scope.loadData($scope.timePeriod);
+         
     }]);

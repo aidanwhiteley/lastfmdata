@@ -14,9 +14,8 @@ angular.module('lastfmdataApp')
             var self = this;
             self.lastFmDataCache = $cacheFactory('lastFmData');
 
-            this.getTopAlbums = function() {
+            this.getTopAlbums = function(period) {
                 var limit = 20;
-                var period = '3month';
                 var jsonpUrl = appConstants.lastFmApiUrl + 'user.gettopalbums&limit=' + limit + '&period=' + period + '&user=' +
                     appConstants.lastFmUser + '&api_key=' + appConstants.lastFmApiKey + '&format=json';
 
@@ -31,9 +30,8 @@ angular.module('lastfmdataApp')
                 return this.getLastFmData(jsonpUrl);
             };
 
-            this.getTopTracks = function() {
+            this.getTopTracks = function(period) {
                 var limit = 50;
-                var period = '3month';
                 var jsonpUrl = appConstants.lastFmApiUrl + 'user.gettoptracks&limit=' + limit + '&period=' + period + '&user=' +
                     appConstants.lastFmUser + '&api_key=' + appConstants.lastFmApiKey + '&format=json';
 
@@ -43,6 +41,7 @@ angular.module('lastfmdataApp')
             // Use of promises,q and http based on article at http://www.dwmkerr.com/promises-in-angularjs-the-definitive-guide/
             this.getLastFmData = function(url) {
 
+				$log.debug('About to retrieve data for: ' + url);
                 var cachedData = self.lastFmDataCache.get(url);
 
                 var deferred = $q.defer();

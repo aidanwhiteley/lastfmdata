@@ -1,24 +1,46 @@
 <div class="row">
-  <h3>most played albums</h3>
-
-  <div ng-if="dataRetrievalError"><p class="text-error">Sorry - there was a problem getting the top album data from Last.fm</p></div>
-  <div ng-if="editConstantsError"><p class="text-error">Please edit app.js with your own Last.fm API details before using the application</p></div>
-  
-  <div ng-show="isLoading"class="spinner medium"></div>
-  
-  <div ng-repeat="album in albums" class="album" ng-class="{flip: hover}" 
-    ng-mouseenter="hover = true" ng-mouseleave="hover = false">
-		<div class="front">
-			<img ng-src="{{album.image[album.image.length-1]['#text']}}">
-			<div class="alpha"></div>
-		</div>
-		<div class="back">
-			<p class="albumName">{{album.name}}</p>
-			<p>by</p>
-			<p class="albumArtist">{{album.artist.name}}.</p>
-			<p class="albumTrackPlayCount">{{album.playcount}} tracks played</p>
-		</div>
-	</div>
-</div> 
-
-<div class="row" ng-include="'views/lastfm-attribution.html'"></div>
+   <h3>
+      most played albums {{displayPeriod}}
+      <span class="btn-group pull-right" dropdown>
+         <button type="button" class="btn btn-primary dropdown-toggle">
+         Time period <span class="caret"></span>
+         </button>
+         <ul class="dropdown-menu" role="menu">
+            <li><a ng-click="setPeriod('7day')">Last 7 days</a></li>
+            <li><a ng-click="setPeriod('1month')">Last 1 month</a></li>
+            <li><a ng-click="setPeriod('3month')">Last 3 months</a></li>
+            <li><a ng-click="setPeriod('6month')">Last 6 months</a></li>
+            <li><a ng-click="setPeriod('12month')">Last 12 months</a></li>
+            <li class="divider"></li>
+            <li><a ng-click="setPeriod('overall')">Overall</a></li>
+         </ul>
+      </span>
+   </h3>
+</div>
+<div class="row">
+   <div ng-if="dataRetrievalError">
+      <p class="text-error">Sorry - there was a problem getting the top album data from Last.fm</p>
+   </div>
+   <div ng-if="editConstantsError">
+      <p class="text-error">Please edit app.js with your own Last.fm API details before using the application</p>
+   </div>
+   <div ng-show="isLoading" class="spinner medium"></div>
+</div>
+<div ng-hide="isLoading" class="row">
+   <div ng-repeat="album in albums" class="album" ng-class="{flip: hover}" 
+      ng-mouseenter="hover = true" ng-mouseleave="hover = false">
+      <div class="front">
+         <img ng-src="{{album.image[album.image.length-1]['#text']}}">
+         <div class="alpha"></div>
+      </div>
+      <div class="back">
+         <p class="albumName">{{album.name}}</p>
+         <p>by</p>
+         <p class="albumArtist">{{album.artist.name}}.</p>
+         <p class="albumTrackPlayCount">{{album.playcount}} tracks played</p>
+      </div>
+   </div>
+</div>
+<div class="row">
+   <div class="row" ng-include="'views/lastfm-attribution.html'"></div>
+</div>

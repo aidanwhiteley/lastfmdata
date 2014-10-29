@@ -42,12 +42,20 @@ body {
   }
 }
 
+h3 .btn-group { display: inline-block; }
+
 
 .lastfmlink {
 	margin-top: 35px;
 }
 
 .albumModal  a:hover {
+    cursor: pointer;
+	text-decoration: underline;
+	text-underline-style: dashed;
+}
+
+.dropdown-menu  a:hover {
     cursor: pointer;
 	text-decoration: underline;
 	text-underline-style: dashed;
@@ -69,11 +77,6 @@ td.text-center {
 .spinner.medium {
     height: 30px; width: 30px;
     background: url("../images/spiffygif_30x30.gif");
-}
-
-
-.st-sort-descent:before {
-content: '\25BC';
 }
 
 /* To suit the styling of the page within which this last fm page is an iframe */
