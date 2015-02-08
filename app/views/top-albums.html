@@ -30,7 +30,7 @@
    <div ng-repeat="album in albums" class="album" ng-class="{flip: hover}" 
       ng-mouseenter="hover = true" ng-mouseleave="hover = false">
       <div class="front">
-         <img ng-src="{{album.image[album.image.length-1]['#text']}}">
+         <img ng-src="{{album.image[album.image.length - offset]['#text']}}">
          <div class="alpha"></div>
       </div>
       <div class="back">

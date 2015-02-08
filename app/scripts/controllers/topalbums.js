@@ -24,6 +24,15 @@ angular.module('lastfmdataApp')
 			$scope.displayPeriod = controllerUtils.getDisplayTimePeriod(selectedDuration);
             $scope.loadData(selectedDuration);
 		};
+		
+		$scope.imageSizeOffset = function() {
+			var offset = 1;
+			// based on screen width, but you can base on height as well http://www.w3schools.com/js/js_window_screen.asp
+			if (window.screen.width < 800) {
+				offset += 1; 
+			} 
+			return offset;
+		};
 
         $scope.loadData = function(duration) {
             $scope.isLoading = true;
@@ -42,5 +51,6 @@ angular.module('lastfmdataApp')
          };
          
          $scope.loadData($scope.timePeriod);
+		 $scope.offset = $scope.imageSizeOffset();
          
     }]);
