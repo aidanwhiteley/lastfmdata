@@ -1,3 +1,4 @@
+/*global angular: false */
 'use strict';
 
 /**
@@ -12,19 +13,23 @@ angular
     .module('lastfmdataApp', [
         'ngResource',
         'ngRoute',
-        'ui.bootstrap', 
+        'ui.bootstrap',
         'ngTable'
     ])
     .constant('appConstants', {
-        lastFmUser : 'xxxxxx',                                                    /* Your Last.FM userid */
-        lastFmApiKey : '00000000000000000000000000000000',                        /* Your last FM API key */
-        lastFmApiUrl : 'http://ws.audioscrobbler.com/2.0/?method=',               /* Last FM API URL - should not need changing */
-        cacheExpiryPeriodMs: 30000,                                               /* How long to cache - in JavaScript - the JSON/JSONP responses from Last.FM */
-        useBrowserCache: false                                                    /* Cache JSON responses in browser - avoid hitting Last.FM too much during development */
+        lastFmUser: 'xxxxxx',
+        /* Your Last.FM userid */
+        lastFmApiKey: '00000000000000000000000000000000',
+        /* Your last FM API key */
+        lastFmApiUrl: 'http://ws.audioscrobbler.com/2.0/?method=',
+        /* Last FM API URL - should not need changing */
+        cacheExpiryPeriodMs: 30000,
+        /* How long to cache - in JavaScript - the JSON/JSONP responses from Last.FM */
+        useBrowserCache: false /* Cache JSON responses in browser - avoid hitting Last.FM too much during development */
     })
     .config(function ($routeProvider, $logProvider) {
 
-        $logProvider.debugEnabled(false);                                         /* Turn on console log debugging */
+        $logProvider.debugEnabled(false); /* Turn on console log debugging */
 
         $routeProvider
             .when('/', {

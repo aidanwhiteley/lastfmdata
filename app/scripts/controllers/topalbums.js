@@ -1,3 +1,4 @@
+/*global angular: false */
 'use strict';
 
 /**
@@ -42,7 +43,7 @@ angular.module('lastfmdataApp')
                         function (data) {
                             var albums = data.topalbums.album;
                             var sortedAlbums = albums.sort(function (a, b) {
-                                return parseInt(b.playcount) - parseInt(a.playcount);
+                                return parseInt(b.playcount, 10) - parseInt(a.playcount, 10);
                             });
                             $scope.albums = sortedAlbums;
                             $scope.isLoading = false;

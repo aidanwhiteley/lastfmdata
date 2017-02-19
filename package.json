@@ -1,8 +1,10 @@
 {
   "name": "lastfmdata",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
   "dependencies": {},
   "devDependencies": {
+    "minimatch": "^3.0.3",
     "grunt": "^0.4.1",
     "grunt-autoprefixer": "^0.7.3",
     "grunt-concurrent": "^0.5.0",
@@ -36,5 +38,9 @@
   },
   "scripts": {
     "test": "grunt test"
+  },
+  "repository": {
+      "type": "git",
+      "url": "git://github.com/aidanwhiteley/repository.git"
   }
 }

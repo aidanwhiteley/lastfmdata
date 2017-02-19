@@ -1,3 +1,4 @@
+/*global angular: false, XDomainRequest : false */
 'use strict';
 
 /**
@@ -14,7 +15,7 @@ angular.module('lastfmdataApp')
             var self = this;
             self.lastFmDataCache = $cacheFactory('lastFmData');
 
-            this.getTopAlbums = function(period) {
+            this.getTopAlbums = function (period) {
                 var limit = 20;
                 var jsonpUrl = appConstants.lastFmApiUrl + 'user.gettopalbums&limit=' + limit + '&period=' + period + '&user=' +
                     appConstants.lastFmUser + '&api_key=' + appConstants.lastFmApiKey + '&format=json';
@@ -22,7 +23,7 @@ angular.module('lastfmdataApp')
                 return this.getLastFmData(jsonpUrl);
             };
 
-            this.getRecentTracks = function() {
+            this.getRecentTracks = function () {
                 var limit = 50;
                 var jsonpUrl = appConstants.lastFmApiUrl + 'user.getRecentTracks&limit=' + limit + '&user=' + appConstants.lastFmUser +
                     '&api_key=' + appConstants.lastFmApiKey + '&format=json';
@@ -30,7 +31,7 @@ angular.module('lastfmdataApp')
                 return this.getLastFmData(jsonpUrl);
             };
 
-            this.getTopTracks = function(period) {
+            this.getTopTracks = function (period) {
                 var limit = 50;
                 var jsonpUrl = appConstants.lastFmApiUrl + 'user.gettoptracks&limit=' + limit + '&period=' + period + '&user=' +
                     appConstants.lastFmUser + '&api_key=' + appConstants.lastFmApiKey + '&format=json';
@@ -39,9 +40,9 @@ angular.module('lastfmdataApp')
             };
 
             // Use of promises,q and http based on article at http://www.dwmkerr.com/promises-in-angularjs-the-definitive-guide/
-            this.getLastFmData = function(url) {
+            this.getLastFmData = function (url) {
 
-				$log.debug('About to retrieve data for: ' + url);
+                $log.debug('About to retrieve data for: ' + url);
                 var cachedData = self.lastFmDataCache.get(url);
 
                 var deferred = $q.defer();
@@ -66,14 +67,14 @@ angular.module('lastfmdataApp')
                         });
                     }
 
-                    aPromise.success(function(data) {
+                    aPromise.success(function (data) {
                         $log.debug('Cache miss - data retrieved OK by http');
                         self.lastFmDataCache.put(url, {
                             timestamp: (new Date()).getTime(),
                             theData: data
                         });
                         deferred.resolve(data);
-                    }).error(function(response) {
+                    }).error(function (response) {
                         $log.debug('Cache miss - failed to retrieve data by http');
                         deferred.reject(response);
                     });
@@ -95,7 +96,7 @@ angular.module('lastfmdataApp')
                     // No CORS support at all
                 }
                 return browserSupportsCors;
-            };
+            }
 
         }
     ]);

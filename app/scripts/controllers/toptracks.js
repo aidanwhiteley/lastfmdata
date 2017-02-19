@@ -1,3 +1,4 @@
+/*global angular: false */
 'use strict';
 
 /**
@@ -33,7 +34,7 @@ angular.module('lastfmdataApp')
             }, {
                 total: $scope.data.length,
                 getData: function ($defer, params) {
-                    var hasData = ($scope.data && $scope.data.toptracks && $scope.data.toptracks.track != null);
+                    var hasData = ($scope.data && $scope.data.toptracks && $scope.data.toptracks.track !== null);
                     if (hasData) {
                         params.total($scope.data.toptracks.track.length);
                     }

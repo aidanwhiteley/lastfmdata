@@ -1,3 +1,5 @@
+/*global angular: false */
+
 'use strict';
 
 /**
@@ -8,45 +10,45 @@
  * Controller of the lastfmdataApp
  */
 angular.module('lastfmdataApp')
-    .controller('ModalCtrl', function($scope, $modal, $log) {
+    .controller('ModalCtrl', function ($scope, $modal, $log) {
 
-        $scope.open = function(theImage, theArtist, theAlbum) {
+        $scope.open = function (theImage, theArtist, theAlbum) {
 
             var modalInstance = $modal.open({
                 templateUrl: 'views/albumimage.html',
                 controller: 'ModalInstanceCtrl',
                 resolve: {
-                    theImage: function() {
+                    theImage: function () {
                         return theImage;
                     },
-                    theArtist: function() {
+                    theArtist: function () {
                         return theArtist;
                     },
-                    theAlbum: function() {
+                    theAlbum: function () {
                         return theAlbum;
                     }
                 }
             });
 
-            modalInstance.result.then(function() {
+            modalInstance.result.then(function () {
                 //$scope.selected = selectedItem;
-            }, function() {
+            }, function () {
                 $log.debug('Modal dismissed at: ' + new Date());
             });
         };
     });
 
-angular.module('lastfmdataApp').controller('ModalInstanceCtrl', function($scope, $modalInstance, theImage, theArtist, theAlbum) {
+angular.module('lastfmdataApp').controller('ModalInstanceCtrl', function ($scope, $modalInstance, theImage, theArtist, theAlbum) {
 
     $scope.theImage = theImage;
     $scope.theArtist = theArtist;
     $scope.theAlbum = theAlbum;
 
-    $scope.ok = function() {
+    $scope.ok = function () {
         $modalInstance.close();
     };
 
-    $scope.cancel = function() {
+    $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
 });
