@@ -9,11 +9,11 @@
  */
 angular.module('lastfmdataApp')
     .controller('TopTracksCtrl', ['$scope', 'appConstants', 'lastFmDataService', 'ngTableParams', 'controllerUtils',
-        function($scope, appConstants, lastFmDataService, ngTableParams, controllerUtils) {
+        function ($scope, appConstants, lastFmDataService, ngTableParams, controllerUtils) {
 
             $scope.timePeriod = '3month';
-			$scope.displayPeriod = ' over the last 3 months';
-			$scope.data = [];
+            $scope.displayPeriod = ' over the last 3 months';
+            $scope.data = [];
             $scope.initialPageLoad = true;
 
             if (appConstants.lastFmUser.indexOf('xxx') >= 0 || appConstants.lastFmApiKey.indexOf('000') >= 0) {
@@ -21,18 +21,18 @@ angular.module('lastfmdataApp')
                 return;
             }
 
-            $scope.setPeriod = function(selectedDuration) {
+            $scope.setPeriod = function (selectedDuration) {
                 $scope.timePeriod = selectedDuration;
-				$scope.displayPeriod = controllerUtils.getDisplayTimePeriod(selectedDuration);
-				$scope.getTopTracks();
+                $scope.displayPeriod = controllerUtils.getDisplayTimePeriod(selectedDuration);
+                $scope.getTopTracks();
             };
-            
+
             $scope.tableParams = new ngTableParams({
                 page: 1,
                 count: 10
             }, {
                 total: $scope.data.length,
-                getData: function($defer, params) {
+                getData: function ($defer, params) {
                     var hasData = ($scope.data && $scope.data.toptracks && $scope.data.toptracks.track != null);
                     if (hasData) {
                         params.total($scope.data.toptracks.track.length);
@@ -42,27 +42,27 @@ angular.module('lastfmdataApp')
                     $scope.isLoading = false;
                 }
             });
-		
-			$scope.getTopTracks = function() {
+
+            $scope.getTopTracks = function () {
                 $scope.isLoading = true;
-				$scope.initialPageLoad = false;
-                
-				lastFmDataService.getTopTracks($scope.timePeriod)
+                $scope.initialPageLoad = false;
+
+                lastFmDataService.getTopTracks($scope.timePeriod)
                     .then(
-                        function(data) {
+                        function (data) {
                             $scope.data = data;
                             $scope.tableParams.reload();
                             $scope.tableParams.$params.page = 1;
                         },
-                        function() {
+                        function () {
                             $scope.dataRetrievalError = true;
                             $scope.isLoading = false;
                         }
                     );
-			};
-			
-			if ($scope.initialPageLoad) {
-				$scope.getTopTracks();
-			}
+            };
+
+            if ($scope.initialPageLoad) {
+                $scope.getTopTracks();
+            }
         }
     ]);

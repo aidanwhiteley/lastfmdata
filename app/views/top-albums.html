@@ -8,7 +8,7 @@
          <ul class="dropdown-menu" role="menu">
             <li><a ng-click="setPeriod('7day')">Last 7 days</a></li>
             <li><a ng-click="setPeriod('1month')">Last 1 month</a></li>
-            <li><a ng-click="setPeriod('3month')">Last 3 months</a></li>
+            <!-- li><a ng-click="setPeriod('3month')">Last 3 months</a></li -->
             <li><a ng-click="setPeriod('6month')">Last 6 months</a></li>
             <li><a ng-click="setPeriod('12month')">Last 12 months</a></li>
             <li class="divider"></li>
@@ -30,7 +30,12 @@
    <div ng-repeat="album in albums" class="album" ng-class="{flip: hover}" 
       ng-mouseenter="hover = true" ng-mouseleave="hover = false">
       <div class="front">
-         <img ng-src="{{album.image[album.image.length - offset]['#text']}}">
+         <div ng-show="album.image[album.image.length - offset]['#text'].length != 0">
+            <img ng-src="{{album.image[album.image.length - offset]['#text']}}">
+         </div>
+         <div ng-show="album.image[album.image.length - offset]['#text'].length == 0">
+            <img src="./images/no_image_available.png">
+         </div>
          <div class="alpha"></div>
       </div>
       <div class="back">

@@ -17,8 +17,8 @@ angular.module('lastfmdataApp')
 				toDisplay = ' over the last 7 days';
 			} else if (timePeriod === '1month') {
 				toDisplay = ' over the last month';
-			} else if (timePeriod === '3month') {
-				toDisplay = ' over the last 3 months';
+			/*} else if (timePeriod === '3month') {
+				toDisplay = ' over the last 3 months';*/
 			} else if (timePeriod === '6month') {
 				toDisplay = ' over the last 6 months';
 			} else if (timePeriod === '12month') {
